@@ -114,7 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: CircularProgressIndicator(),
           );
         }
-
+          // Add this line. if No results found show "No Results", otherwise ERROR.
+        if (snapshot.data[0]["message"].toString().length > 0) {
+          return Center(child: Text("No Results"));
+        }
           return ListView.builder(
             itemCount: snapshot.data["definitions"].length,
             itemBuilder: (BuildContext context,int index){
